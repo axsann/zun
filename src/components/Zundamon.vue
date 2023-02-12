@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import base from '../assets/zundamon-base.webp'
-import bothArms from '../assets/zundamon-both-arms.webp'
-import mame from '../assets/zundamon-mame.webp'
-import hoppe from '../assets/zundamon-hoppe.webp'
-import mouthClosed from '../assets/zundamon-mouth-closed.webp'
-import eyeNormal from '../assets/zundamon-eye-normal.webp'
-import eyebrowNormal from '../assets/zundamon-eyebrow-normal.webp'
+import base from '../assets/img/zundamon-base.webp'
+import bothArms from '../assets/img/zundamon-both-arms.webp'
+import mame from '../assets/img/zundamon-mame.webp'
+import hoppe from '../assets/img/zundamon-hoppe.webp'
+import mouthClosed from '../assets/img/zundamon-mouth-closed.webp'
+import eyeNormal from '../assets/img/zundamon-eye-normal.webp'
+import eyebrowNormal from '../assets/img/zundamon-eyebrow-normal.webp'
 
 defineProps<{ size: string }>()
 
