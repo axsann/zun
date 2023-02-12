@@ -12,7 +12,7 @@ export default defineConfig({
       {
         name: 'gen',
         watchKind: ['add', 'change', 'unlink'],
-        watch: path.resolve('src/assets/json/**/*.(json|js)'),
+        watch: path.resolve('src/assets/input-json/**/*.(json|js)'),
         run: 'npm run gen',
         delay: 300,
       },

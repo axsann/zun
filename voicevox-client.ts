@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import crypto from 'crypto';
 
 async function hoge() {
-  const topPageJson = await fs.readJson('./src/assets/json/top-page.json');
+  const topPageJson = await fs.readJson('./src/assets/input-json/top-page.json');
 
   const text = Object.keys(topPageJson)[0];
   const zundamonNumber = 1;
@@ -18,8 +18,8 @@ async function hoge() {
     },
   });
 
-  const query = await res.json();
-  console.log(query);
+  const audioQuery = await res.json();
+  console.log(audioQuery);
 
   const sound = await fetch(
     `http://localhost:50021/synthesis?speaker=${zundamonNumber}&enable_interrogative_upspeak=true`,
@@ -30,14 +30,24 @@ async function hoge() {
         accept: 'audio/wav',
         responseType: 'stream',
       },
-      body: JSON.stringify(query),
+      body: JSON.stringify(audioQuery),
     }
   );
 
-  const fileName = crypto.createHash('md5').update(text).digest('hex');
+  const fileName = `${crypto.createHash('md5').update(text).digest('hex')}.wav`;
 
-  const dest = fs.createWriteStream(`${fileName}.wav`);
+  // TODO: inputのjsonファイル名をフォルダにしてその中に保存する
+  const dest = fs.createWriteStream(`./public/${fileName}`);
   sound.body!.pipe(dest);
+
+  const resultJson = {
+    [text]: {
+      audioQuery: audioQuery,
+      audioFile: fileName,
+    },
+  };
+
+  fs.writeJSON('./src/assets/output-json/top-page-out.json', resultJson);
 }
 
 hoge();

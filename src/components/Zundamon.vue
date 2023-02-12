@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import base from '../assets/img/zundamon-base.webp'
 import bothArms from '../assets/img/zundamon-both-arms.webp'
 import mame from '../assets/img/zundamon-mame.webp'
@@ -8,20 +7,13 @@ import mouthClosed from '../assets/img/zundamon-mouth-closed.webp'
 import eyeNormal from '../assets/img/zundamon-eye-normal.webp'
 import eyebrowNormal from '../assets/img/zundamon-eyebrow-normal.webp'
 
-defineProps<{ size: string }>()
+defineProps<{ isSpeaking: boolean }>()
 
-const speaking = ref(false)
-
-function onClick() {
-  speaking.value = !speaking.value;
-}
-
-const count = ref(0)
 </script>
 
 <template>
   <div style="position: fixed;bottom: 438px;left: 0;right: 375px;display: flex;justify-content: flex-end;">
-    <div @click="onClick" :class="{ 'puyon': speaking }" style="position: relative;">
+    <div :class="{ 'puyon': isSpeaking }" style="position: relative;">
       <img :src="base" style="position: absolute;" />
       <img :src="bothArms" style="position: absolute;" />
       <img :src="mame" style="position: absolute;" />
